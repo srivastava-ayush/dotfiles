@@ -1,0 +1,88 @@
+{
+"logo": {
+  "type": "file",
+  "source": "~/.config/fastfetch/logo.txt"
+},
+
+  "display": {
+    "separator": "  →  ",
+    "key": {
+      "width": 12
+    }
+  },
+
+  "modules": [
+    {
+      "type": "custom",
+      "format": "› ayush system",
+      "color": "#ca9ee6"
+    },
+
+    "break",
+
+    // 🖥️ SYSTEM
+    { "type": "os", "key": "OS", "keyColor": "#8caaee" },
+    { "type": "host", "key": "Host", "keyColor": "#8caaee" },
+    { "type": "kernel", "key": "Kernel", "keyColor": "#8caaee" },
+    { "type": "uptime", "key": "Uptime", "keyColor": "#8caaee" },
+    { "type": "packages", "key": "Packages", "keyColor": "#8caaee" },
+
+    "break",
+
+    // 🧠 HARDWARE
+    { "type": "cpu", "key": "CPU", "keyColor": "#ca9ee6" },
+    { "type": "gpu", "key": "GPU", "keyColor": "#ca9ee6" },
+    { "type": "memory", "key": "RAM", "format": "{used} / {total}", "keyColor": "#ca9ee6" },
+    { "type": "disk", "key": "Disk", "keyColor": "#ca9ee6" },
+    { "type": "swap", "key": "Swap", "keyColor": "#ca9ee6" },
+
+    "break",
+
+    // 🖥️ DISPLAY / UI
+    { "type": "display", "key": "Display", "keyColor": "#8caaee" },
+    { "type": "wm", "key": "WM", "keyColor": "#8caaee" },
+    { "type": "wmtheme", "key": "WM Theme", "keyColor": "#8caaee" },
+    { "type": "icons", "key": "Icons", "keyColor": "#8caaee" },
+    { "type": "terminal", "key": "Terminal", "keyColor": "#8caaee" },
+
+    "break",
+
+    // 🌐 NETWORK
+    { "type": "localip", "key": "Local IP", "keyColor": "#ca9ee6" },
+    { "type": "publicip", "key": "Public IP", "keyColor": "#ca9ee6" },
+
+    "break",
+
+    // ⚙️ DEV ENV
+    {
+      "type": "command",
+      "key": "Node",
+      "command": "node -v",
+      "keyColor": "#a6d189"
+    },
+    {
+      "type": "command",
+      "key": "NPM",
+      "command": "npm -v",
+      "keyColor": "#a6d189"
+    },
+    {
+      "type": "command",
+      "key": "Git",
+      "command": "git --version | cut -d ' ' -f3",
+      "keyColor": "#8caaee"
+    },
+    {
+      "type": "command",
+      "key": "Docker",
+      "command": "docker --version 2>/dev/null | cut -d ' ' -f3 | tr -d ','",
+      "keyColor": "#8caaee"
+    },
+
+    "break",
+
+    // 🔋 EXTRA
+    { "type": "battery", "key": "Battery", "keyColor": "#ca9ee6" },
+    { "type": "locale", "key": "Locale", "keyColor": "#8caaee" }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "$schema": "/etc/xdg/swaync/configSchema.json",
+
+  "positionX": "left",
+  "positionY": "bottom",
+
+  "timeout": 5,
+  "timeout-low": 3,
+  "timeout-critical": 0,
+
+  "notification-window-width": 360,
+  "control-center-width": 360,
+
+  "control-center-margin-top": 8,
+  "control-center-margin-left": 8,
+  "control-center-margin-bottom": 8,
+
+  "fit-to-screen": true,
+  "layer": "overlay",
+  "control-center-layer": "overlay",
+
+  "cssPriority": "user",
+  "ignore-gtk-theme": false,
+
+  "widgets": [
+    "title",
+    "mpris",
+    "volume",
+    "backlight",
+    "buttons-grid",
+    "buttons-grid#power",
+    "dnd",
+    "notifications"
+  ],
+
+  "widget-config": {
+    "title": {
+      "text": "Ayush • Arch",
+
+      "clear-all-button": false,
+      "button-text": "Clear"
+    },
+
+    "dnd": {
+      "label": "Do Not Disturb"
+    },
+
+    "mpris": {
+      "image-size": 56,
+      "image-radius": 12
+    },
+
+    "volume": {
+      "label": "󰕾",
+      "show-per-app": false
+    },
+
+    "backlight": {
+      "label": "󰃟",
+      "device": "amdgpu_bl1"
+    },
+
+    "buttons-grid": {
+      "columns": 2,
+
+      "actions": [
+        { "label": "󰤨", "command": "nmtui", "tooltip": "WiFi" },
+        { "label": "󰂯", "command": "blueman-manager", "tooltip": "Bluetooth" },
+        { "label": "󰕾", "command": "pavucontrol", "tooltip": "Sound" },
+        { "label": "󰐻", "command": "hyprpicker -a", "tooltip": "Color Picker" },
+        { "label": "󰆍", "command": "code", "tooltip": "VS Code" },
+        { "label": "󰣇", "command": "thunar", "tooltip": "Files" },
+        { "label": "󰆍", "command": "kitty", "tooltip": "Terminal" },
+        {
+          "label": "󰍡",
+          "command": "hyprshot -m region",
+          "tooltip": "Screenshot"
+        }
+      ]
+    },
+
+    "buttons-grid#power": {
+      "columns": 4,
+      "actions": [
+        { "label": "󰌾", "command": "hyprlock", "tooltip": "Lock" },
+        { "label": "󰒲", "command": "systemctl suspend", "tooltip": "Sleep" },   {
+          "label": "󰤄",
+          "command": "systemctl hibernate",
+          "tooltip": "Hibernate"
+        },
+        { "label": "󰑐", "command": "systemctl reboot", "tooltip": "Restart" },
+        {
+          "label": "󰐥",
+          "command": "systemctl poweroff",
+          "tooltip": "Shutdown"
+        }
+     
+      ]
+    }
+  }
+}

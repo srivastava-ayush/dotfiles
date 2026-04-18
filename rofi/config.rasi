@@ -1,0 +1,214 @@
+/*****----- Configuration -----*****/
+configuration {
+    modi:              "drun,window,power:~/.config/rofi/power-mode.sh";
+    show-icons:        true;
+    icon-theme:        "Papirus";
+    drun-display-format: "{name}";
+    display-drun:      "Apps";
+    display-window:    "Windows";
+    display-power:     "Power";
+    kb-cancel:         "Escape,Super+space";
+       border-radius:      16px;  
+}
+
+/*****----- Global Variables -----*****/
+
+
+
+* {
+    font:             "SF Pro Display 13";
+
+    /* Catppuccin Frappé — Base layers */
+    bg0:              rgba(48, 52, 70, 0.73);
+    bg1:              rgba(65,69,89,0.70);
+    bg2:              rgba(81,87,109,0.50);
+    bg3:              rgba(98,104,128,0.35);
+    divider:          rgba(198,208,245,0.08);
+    border-col:       rgba(198, 208, 245, 0.71);
+    border-sel:       rgba(202,158,230,0.35);
+
+    /* Text */
+    text-primary:     #c6d0f5;
+    text-secondary:   #838ba7;
+    text-tertiary:    #626880;
+
+    /* Accent — Mauve */
+    accent:           #ca9ee6;
+    accent-dim:       rgba(158, 163, 230, 0.28);
+    accent-sel:       rgba(158, 178, 230, 0.32);
+
+    /* Semantic */
+    red:              #e78284;
+    orange:           #ef9f76;
+    green:            #a6d189;
+}
+
+/*****----- Window -----*****/
+/* Catppuccin Frappé — base #303446 at 88% opacity */
+window {
+    transparency:       "real";
+    location:           center;
+    anchor:             center;
+    width:              640px;
+    border-radius:      16px;
+    border:             1px;
+    border-color:       @border-col;
+    background-color:   @bg0;
+    padding:            0px;
+}
+
+/*****----- Main Layout -----*****/
+mainbox {
+       border-radius:      16px;
+    orientation:        vertical;
+    spacing:            0px;
+    padding:            0px;
+    background-color:   transparent;
+    children:           [ "inputbar", "listbox", "mode-switcher" ];
+}
+
+/*****----- Search Bar -----*****/
+inputbar {
+    padding:            14px 18px;
+    spacing:            12px;
+    background-color:   transparent;
+    children:           [ "prompt", "entry" ];
+}
+
+prompt {
+    background-color:   transparent;
+    text-color:         @text-secondary;
+    vertical-align:     0.5;
+    font:               "SF Pro Display 13";
+}
+
+entry {
+    background-color:   transparent;
+    text-color:         @text-primary;
+    placeholder:        "Search…";
+    placeholder-color:  @text-tertiary;
+    cursor:             text;
+    expand:             true;
+}
+
+/*****----- Separators -----*****/
+separator-top {
+    height:             1px;
+    background-color:   @divider;
+    expand:             false;
+}
+
+separator-bottom {
+    height:             1px;
+    background-color:   @divider;
+    expand:             false;
+}
+
+/*****----- List Container -----*****/
+listbox {
+    padding:            6px;
+    spacing:            0px;
+    background-color:   transparent;
+    children:           [ "listview" ];
+}
+
+listview {
+    columns:            1;
+    lines:              8;
+    spacing:            2px;
+    layout:             vertical;
+    background-color:   transparent;
+    scrollbar:          false;
+    dynamic:            true;
+}
+
+/*****----- App Entry -----*****/
+element {
+    padding:            10px 12px;
+    spacing:            12px;
+    border-radius:      10px;
+    background-color:   transparent;
+    border:             0px;
+    orientation:        horizontal;
+}
+
+element selected.normal {
+    background-color:   @accent-sel;
+    border:             1px;
+    border-color:       @accent-dim;
+}
+
+element-icon {
+    background-color:   transparent;
+    size:               28px;
+    vertical-align:     0.5;
+}
+
+element-text {
+    background-color:   transparent;
+    text-color:         @text-primary;
+    vertical-align:     0.5;
+    highlight:          bold;
+}
+
+element normal.urgent {
+    text-color:         @red;
+}
+
+element selected.urgent {
+    background-color:   rgba(231,130,132,0.18);
+    border:             1px;
+    border-color:       rgba(231,130,132,0.35);
+}
+
+/*****----- Mode Switcher -----*****/
+mode-switcher {
+    padding:            10px 14px;
+    spacing:            6px;
+    background-color:   transparent;
+    expand:             false;
+}
+
+button {
+    padding:            6px 16px;
+    border-radius:      8px;
+    border:             1px;
+    border-color:       @border-col;
+    background-color:   @bg2;
+    text-color:         @text-secondary;
+    font:               "SF Pro Display 12";
+    horizontal-align:   0.5;
+    expand:             true;
+}
+
+button selected {
+    background-color:   @accent-dim;
+    border:             1px;
+    border-color:       rgba(202,158,230,0.45);
+    text-color:         @accent;
+    font:               "SF Pro Display Medium 12";
+}
+
+/*****----- Message (empty state) -----*****/
+message {
+    padding:            14px;
+    background-color:   transparent;
+}
+
+textbox {
+    padding:            10px 12px;
+    border-radius:      10px;
+    background-color:   @bg1;
+    border:             1px;
+    border-color:       @border-col;
+    text-color:         @text-secondary;
+}
+
+/*****----- Scrollbar -----*****/
+scrollbar {
+    width:              3px;
+    handle-width:       3px;
+    handle-color:       @text-tertiary;
+    background-color:   transparent;
+    border-radius:      2px;
+}

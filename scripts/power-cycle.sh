@@ -1,0 +1,9 @@
+#!/bin/bash
+
+CURRENT=$(powerprofilesctl get)
+
+case $CURRENT in
+  performance) powerprofilesctl set balanced ;;
+  balanced) powerprofilesctl set power-saver ;;
+  power-saver) powerprofilesctl set performance ;;
+esac

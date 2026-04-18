@@ -1,0 +1,13 @@
+[Default Applications]
+application/x-zerosize=code.desktop
+text/plain=code.desktop
+image/jpeg=org.gnome.gThumb.desktop
+image/png=org.gnome.gThumb.desktop
+image/webp=org.gnome.gThumb.desktop
+image/gif=org.gnome.gThumb.desktop
+image/bmp=org.gnome.gThumb.desktop
+
+[Added Associations]
+application/x-zerosize=code.desktop;
+text/plain=code.desktop;
+application/x-shellscript=nvim.desktop;

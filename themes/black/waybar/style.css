@@ -1,0 +1,290 @@
+/* ───────────────────────────────
+   THEME VARIABLES
+─────────────────────────────── */
+@define-color foreground #c8d3f5;
+@define-color background #000000;
+
+@define-color bg-alpha alpha(@background, .9);
+
+
+@define-color text-main @foreground;
+@define-color text-hover alpha(@foreground, .85);
+@define-color text-dim alpha(@foreground, .6);
+
+@define-color green #26A65B;
+@define-color yellow #ffbe61;
+@define-color red #f53c3c;
+
+
+/* ───────────────────────────────
+   GLOBAL
+─────────────────────────────── */
+* {
+    background-color: transparent;
+    font-size: 16px;
+    font-family: "CodeNewRoman Nerd Font Propo";
+}
+
+window#waybar {
+    all: unset;
+}
+
+
+/* ───────────────────────────────
+   BAR CONTAINERS
+─────────────────────────────── */
+.modules-left,
+.modules-center,
+.modules-right {
+    color: @text-main;
+    padding: 6px;
+    margin: 10px 10px 0 10px; /* FIX: unified unitless zero */
+    border-radius: 10px;
+    background: @bg-alpha;
+    box-shadow:
+        inset 0 1px 0 rgba(198, 208, 245, 0.15),
+        inset 0 6px 10px rgba(198, 208, 245, 0.1),
+        inset 2px 0 4px rgba(198, 208, 245, 0.01),
+        inset -2px 0 4px rgba(198, 208, 245, 0.01),
+        inset 0 -1px 0 rgba(41, 44, 60, .1);
+}
+
+
+/* ───────────────────────────────
+   TOOLTIP
+─────────────────────────────── */
+tooltip {
+    background: @background;
+    color: @text-main;
+}
+
+
+/* ───────────────────────────────
+   HOVER COLOR
+─────────────────────────────── */
+#clock:hover,
+#custom-pacman:hover,
+#custom-notification:hover,
+#bluetooth:hover,
+#network:hover,
+#battery:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#custom-expand:hover { /* FIX: added missing hover registration */
+    color: @text-main;
+    transition: all .3s ease;
+}
+
+
+/* ───────────────────────────────
+   GLOBAL MODULE SPACING
+─────────────────────────────── */
+#clock,
+#custom-pacman,
+#custom-notification,
+#bluetooth,
+#network,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#custom-expand,
+#custom-colorpicker,
+#group-expand,
+#tray {
+    padding: 0 6px; /* FIX: unified unitless zero */
+    color: @text-main;
+    transition: all .3s ease;
+}
+
+/* FIX: removed redundant duplicate padding rule for #bluetooth, #network —
+   they already inherit 0 6px from the block above */
+
+
+/* ───────────────────────────────
+   CLOCK
+─────────────────────────────── */
+#clock {
+    font-weight: 800;
+}
+tooltip {
+  background: rgba(30,30,46,0.95);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 10px;
+}
+
+tooltip label {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 13px;
+}
+
+
+/* ───────────────────────────────
+   WORKSPACES
+─────────────────────────────── */
+#workspaces {
+    padding: 0;
+}
+
+#workspaces button {
+    all: unset;
+    padding: 0 6px;
+    border-radius: 6px;
+    background: transparent;
+    transition: all .3s ease;
+}
+
+
+/* ───────────────────────────────
+   INACTIVE STATES
+─────────────────────────────── */
+#workspaces button:not(.active):not(.empty) {
+    opacity: .5;
+}
+
+#workspaces button.empty:not(.active) {
+    opacity: .2;
+}
+
+
+/* ───────────────────────────────
+   ACTIVE
+─────────────────────────────── */
+#workspaces button.active {
+    opacity: 1;
+}
+
+#workspaces button:not(.active):hover {
+    opacity: .8;
+}
+
+
+/* ───────────────────────────────
+   BATTERY STATES
+─────────────────────────────── */
+#battery {
+    font-weight: 600;
+}
+
+#battery.charging {
+    color: @green;
+}
+
+#battery.warning:not(.charging) {
+    color: @yellow;
+}
+
+#battery.critical:not(.charging) {
+    color: @red;
+    animation: blink 0.5s linear infinite alternate;
+}
+
+/* FIX: defined missing @keyframes that #battery.critical references */
+@keyframes blink {
+    from { opacity: 1; }
+    to   { opacity: 0.3; }
+}
+
+
+/* ───────────────────────────────
+   EXPAND ICON
+─────────────────────────────── */
+#custom-expand {
+    color: alpha(@foreground, .4);
+    text-shadow: 0 0 2px rgba(0, 0, 0, .7); /* FIX: unified unitless zeros */
+}
+
+#custom-expand-right{
+    color: alpha(@foreground, .4);
+    text-shadow: 0 0 2px rgba(0, 0, 0, .7); /* FIX: unified unitless zeros */
+}
+
+#custom-expand:hover {
+    color: rgba(255, 255, 255, 0.811);
+    text-shadow: 0 0 2px rgba(255, 255, 255, .5); /* FIX: unified unitless zeros */
+}#custom-expand-right:hover {
+    color: rgba(255, 255, 255, 0.811);
+    text-shadow: 0 0 2px rgba(255, 255, 255, .5); /* FIX: unified unitless zeros */
+}
+
+
+#custom-endpoint {
+    color: #c8d3f5;
+    text-shadow: 0 0 1.5px rgba(0, 0, 0, 1); /* FIX: unified unitless zeros */
+}
+
+
+
+/* ───────────────────────────────
+   TRAY MENU
+─────────────────────────────── */
+/* FIX: scoped padding to menuitem only — applying to * broke icon/image sizing */
+#tray menuitem,
+#tray menu separator {
+    padding: 4px 8px;
+    transition: all .3s ease;
+}
+
+
+#custom-spotify-prev{
+
+    padding-left: 40px;
+}
+
+#custom-spotify-prev,
+#custom-spotify-play,
+#custom-spotify-next {
+  padding: 0 6px;
+  color: #c8d3f5;
+}
+
+#custom-spotify {
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+#custom-power-lock,
+#custom-power-logout,
+#custom-power-reboot,
+#custom-power-shutdown {
+  padding: 0 8px;
+  margin: 0 2px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+/* Individual colors (important for UX clarity) */
+#custom-power-lock {
+  color: #a6e3a1;
+}
+
+#custom-power-logout {
+  color: #f9e2af;
+}
+
+#custom-power-reboot {
+  color: #89b4fa;
+}
+
+#custom-power-shutdown {
+  color: #f38ba8;
+}
+
+/* Hover feedback */
+#custom-power-lock:hover {
+  background: rgba(166, 227, 161, 0.2);
+}
+
+#custom-power-logout:hover {
+  background: rgba(249, 226, 175, 0.2);
+}
+
+#custom-power-reboot:hover {
+  background: rgba(137, 180, 250, 0.2);
+}
+
+#custom-power-shutdown:hover {
+  background: rgba(243, 139, 168, 0.2);
+}
