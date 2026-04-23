@@ -2,134 +2,112 @@
   "layer": "top",
   "position": "top",
   "reload_style_on_change": true,
- "modules-left": ["custom/notification", "clock", "group/spotify"],
-  "modules-center": ["hyprland/workspaces"],
-  "modules-right": [ "custom/cava", "group/expand", "custom/pacman", "bluetooth", "network", "battery"],
 
- "hyprland/workspaces": {
-  "format": "{icon}",
-  "format-icons": {
-    "active": "󰮯",
-    "default": "󰊠",
-    "empty": "󰧞"
+  "modules-left":   ["custom/notification", "clock", "group/spotify"],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right":  ["group/expand", "custom/pacman", "bluetooth", "network", "battery"],
+
+  // ─── Workspaces ───────────────────────────────────────────────────────────
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active":  "󰮯",
+      "default": "󰊠",
+      "empty":   "󰧞"
+    },
+    "persistent-workspaces": {
+      "*": [1, 2, 3, 4, 5]
+    }
   },
-  "persistent-workspaces": {
-    "*": [1,2,3,4,5]
-  }
-},
+
+  // ─── Left: Notification ───────────────────────────────────────────────────
   "custom/notification": {
-    "tooltip": false,
-    "format": "",
+    "format":   "🍊",
+    "tooltip":  false,
     "on-click": "swaync-client -t -sw",
-    "escape": true
+    "escape":   true
   },
+
+  // ─── Left: Clock ──────────────────────────────────────────────────────────
   "clock": {
-    "format": "{:%a, %b %d  %I:%M %p} ",
-    "interval": 1,
-    "tooltip-format": "<tt>{calendar}</tt>",
+    "format":          "󰃭  {:%a, %b %d  %I:%M %p}",
+    "interval":        1,
+    "tooltip-format":  "<tt>{calendar}</tt>",
     "calendar": {
       "format": {
         "today": "<span color='#fAfBfC'><b>{}</b></span>"
       }
     },
     "actions": {
-      "on-click-right": "shift_down",
-      "on-click": "shift_up"
+      "on-click":       "shift_up",
+      "on-click-right": "shift_down"
     }
   },
-  "custom/powerprofile": {
-    "exec": "powerprofilesctl get",
-    "interval": 2,
-    "on-click": "~/.config/scripts/power-cycle.sh",
-    "format": "{}"
-  },
- "network": {
-  "format-wifi": "󰤨",
-  "format-ethernet": "󰈀",
-  "format-disconnected": "󰤮",
-  "tooltip-format-wifi": "{essid} ({signalStrength}%) 󰤨",
-  "tooltip-format-ethernet": "{ifname} 󰈀",
-  "on-click": "kitty nmtui"
-},
-  "bluetooth": {
-  "format-on": "󰂯",
-  "format-off": "󰂲",
-  "format-disabled": "󰂲",
-  "format-connected": "󰂱",
-  "format-connected-battery": "󰂱",
-  "tooltip-format": "{controller_alias}\n{num_connections} connected",
-  "on-click-right": "blueman-manager"
-},
-"battery": {
-  "interval": 30,
 
-  "states": {
-    "good": 80,
-    "warning": 35,
-    "critical": 20
-  },
-
-  "format": "{icon} {capacity}%",
-  "format-alt": "{time} {icon}",
-
-  "format-charging": "{icon} {capacity}%",
-  "format-full": "󰁹 100%",
-
-  "format-icons": {
-    "default": [
-      "󰁺",
-      "󰁻",
-      "󰁼",
-      "󰁽",
-      "󰁾",
-      "󰁿",
-      "󰂀",
-      "󰂁",
-      "󰂂",
-      "󰁹"
-    ],
-
-    "charging": [
-      "󰢜",
-      "󰂆",
-      "󰂇",
-      "󰂈",
-      "󰢝",
-      "󰂉",
-      "󰢞",
-      "󰂊",
-      "󰂋",
-      "󰂅"
-    ]
-  }
-},
-  "custom/pacman": {
-  "format": "󰏗 {}",
-  "interval": 1800,
-  "exec": "checkupdates | wc -l",
-  "on-click": "kitty sh -c 'yay -Syu; echo Done - Press enter; read'"
-},
-  "custom/expand": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/endpoint": {
-    "format": "|",
-    "tooltip": false
-  },
-  "group/expand": {
+  // ─── Left: Spotify group ──────────────────────────────────────────────────
+  "group/spotify": {
     "orientation": "horizontal",
     "drawer": {
       "transition-duration": 300,
-      "transition-to-right": true,
-      "click-to-reveal": true
+      "transition-to-left":  false,
+      "click-to-reveal":     true
+    },
+    "modules": [
+      "custom/expand-right",
+      "custom/spotify-prev",
+      "custom/spotify-play",
+      "custom/spotify-next",
+      "custom/spotify"
+    ]
+  },
+
+  "custom/expand-right": {
+    "format":  "󰝚",
+    "tooltip": false
+  },
+
+  "custom/spotify": {
+    "exec":           "~/.config/waybar/scripts/spotify.sh",
+    "interval":       2,
+    "tooltip":        true,
+    "on-click":       "playerctl -p spotify play-pause",
+    "on-scroll-up":   "playerctl -p spotify volume 0.05+",
+    "on-scroll-down": "playerctl -p spotify volume 0.05-"
+  },
+
+  "custom/spotify-prev": {
+    "format":   "󰒮",
+    "tooltip":  false,
+    "on-click": "playerctl -p spotify previous"
+  },
+
+  "custom/spotify-play": {
+    "exec":     "playerctl -p spotify status | grep -q Playing && echo '󰏦' || echo '󰐍'",
+    "interval": 2,
+    "on-click": "playerctl -p spotify play-pause",
+    "tooltip":  false
+  },
+
+  "custom/spotify-next": {
+    "format":   "󰒭",
+    "tooltip":  false,
+    "on-click": "playerctl -p spotify next"
+  },
+
+  // ─── Right: Expand group (power + system) ────────────────────────────────
+  "group/expand": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration":  300,
+      "transition-to-right":  true,
+      "click-to-reveal":      true
     },
     "modules": [
       "custom/expand",
-        "custom/power-lock",
-  "custom/power-logout",
-  "custom/power-reboot",
-  "custom/power-shutdown",
+      // "custom/power-lock",
+      // "custom/power-logout",
+      // "custom/power-reboot",
+      // "custom/power-shutdown",
       "custom/powerprofile",
       "cpu",
       "memory",
@@ -138,103 +116,119 @@
     ]
   },
 
-"group/spotify": {
-    "orientation": "horizontal",
-    "drawer": {
-      "transition-duration": 300,
-      "transition-to-left": false,
-      "click-to-reveal": true
-    },
-    "modules": [
-       "custom/expand-right",
-       "custom/spotify-prev",
-      "custom/spotify-play",
-      "custom/spotify-next",
-      "custom/spotify",
-       
-        "custom/expand"
-    ]
+  "custom/expand": {
+    "format":  "󰍜",
+    "tooltip": false
   },
-  "custom/expand-right": {
-  "format":"",
-  "tooltip": false
-}
-  ,
 
-"custom/spotify": {
-  "exec": "~/.config/waybar/scripts/spotify.sh",
-  "interval": 2,
-  "on-click": "playerctl -p spotify play-pause",
-  "tooltip": true,
-   "on-scroll-up": "playerctl -p spotify volume 0.05+",
-  "on-scroll-down": "playerctl -p spotify volume 0.05-"
-}
-,
-"custom/spotify-prev": {
-  "format": "",
-  "on-click": "playerctl -p spotify previous",
-  "tooltip": false
-}
-,
+  "custom/endpoint": {
+    "format":  "|",
+    "tooltip": false
+  },
 
-"custom/spotify-play": {
-  "exec": "playerctl -p spotify status | grep Playing && echo '' || echo ''",
-  "interval": 2,
-  "on-click": "playerctl -p spotify play-pause"
-}
+  // ─── Right: Updates ───────────────────────────────────────────────────────
+  "custom/pacman": {
+    "format":   "󰏗  {}",
+    "interval": 1800,
+    "exec":     "checkupdates | wc -l",
+    "on-click": "kitty sh -c 'yay -Syu; echo Done — press enter to close; read'"
+  },
 
-,
-"custom/spotify-next": {
-  "format": "",
-  "on-click": "playerctl -p spotify next",
-  "tooltip": false
-}
-,
-"custom/cava": {
-  "exec": "~/.config/waybar/scripts/cava.sh",
-  "restart-interval": 1,
-  "tooltip": false
-}
-,
- 
- "cpu": {
-  "format": "󰍛 {usage}%"
-},
+  // ─── Right: Bluetooth ─────────────────────────────────────────────────────
+  "bluetooth": {
+    "format-on":               "󰂯",
+    "format-off":              "󰂲",
+    "format-disabled":         "󰂲",
+    "format-connected":        "󰂱",
+    "format-connected-battery": "󰂱",
+    "tooltip-format":          "{controller_alias}\n{num_connections} connected",
+    "on-click-right":          "blueman-manager"
+  },
 
-"memory": {
-  "format": "󰘚 {percentage}%"
-},
+  // ─── Right: Network ───────────────────────────────────────────────────────
+  "network": {
+    "format-wifi":             "󰤨",
+    "format-ethernet":         "󰈀",
+    "format-disconnected":     "󰤮",
+    "tooltip-format-wifi":     "{essid}  {signalStrength}%",
+    "tooltip-format-ethernet": "{ifname}  󰈀",
+    "on-click":                "kitty nmtui"
+  },
 
-"temperature": {
-  "critical-threshold": 80,
-  "format": "󰔏 {temperatureC}°C"
-},
+  // ─── Right: Battery ───────────────────────────────────────────────────────
+  "battery": {
+    "interval": 30,
+    "states": {
+      "good":     80,
+      "warning":  35,
+      "critical": 20
+    },
+    "format":          "{icon}  {capacity}%",
+    "format-alt":      "{icon}  {time}",
+    "format-charging": "{icon}  {capacity}%",
+    "format-full":     "󰁹  100%",
+    "format-icons": {
+      "default": [
+        "󰁺", "󰁻", "󰁼", "󰁽", "󰁾",
+        "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+      ],
+      "charging": [
+        "󰢜", "󰂆", "󰂇", "󰂈", "󰢝",
+        "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"
+      ]
+    }
+  },
+
+  // ─── System stats ─────────────────────────────────────────────────────────
+  "cpu": {
+    "format": "󰍛  {usage}%"
+  },
+
+  "memory": {
+    "format": "󰘚  {percentage}%"
+  },
+
+  "temperature": {
+    "critical-threshold": 80,
+    "format":             "󰔏  {temperatureC}°C"
+  },
+
+  // ─── Power profile ────────────────────────────────────────────────────────
+  "custom/powerprofile": {
+    "exec":     "powerprofilesctl get",
+    "interval": 2,
+    "format":   "󱐋  {}",
+    "on-click": "~/.config/scripts/power-cycle.sh"
+  },
+
+  // ─── Power controls ───────────────────────────────────────────────────────
+  "custom/power-lock": {
+    "format":   "󰌾",
+    "tooltip":  false,
+    "on-click": "hyprlock || swaylock || i3lock"
+  },
+
+  "custom/power-logout": {
+    "format":   "󰍃",
+    "tooltip":  false,
+    "on-click": "hyprctl dispatch exit || swaymsg exit || i3-msg exit"
+  },
+
+  "custom/power-reboot": {
+    "format":   "󰑙",
+    "tooltip":  false,
+    "on-click": "systemctl reboot"
+  },
+
+  "custom/power-shutdown": {
+    "format":   "󰐥",
+    "tooltip":  false,
+    "on-click": "systemctl poweroff"
+  },
+
+  // ─── Tray ─────────────────────────────────────────────────────────────────
   "tray": {
     "icon-size": 14,
-    "spacing": 10
-  },
-
-  "custom/power-lock": {
-  "format": "",
-  "on-click": "hyprlock || swaylock || i3lock",
-  "tooltip": false
-},
-
-"custom/power-logout": {
-  "format": "",
-  "on-click": "hyprctl dispatch exit || swaymsg exit || i3-msg exit",
-  "tooltip": false
-},
-
-"custom/power-reboot": {
-  "format": "",
-  "on-click": "systemctl reboot",
-  "tooltip": false
-},
-
-"custom/power-shutdown": {
-  "format": "",
-  "on-click": "systemctl poweroff",
-  "tooltip": false
-}
+    "spacing":   10
+  }
 }
