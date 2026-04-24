@@ -22,7 +22,7 @@
 
   // ─── Left: Notification ───────────────────────────────────────────────────
   "custom/notification": {
-    "format":   "🍊",
+    "format":   " ",
     "tooltip":  false,
     "on-click": "swaync-client -t -sw",
     "escape":   true
@@ -82,7 +82,7 @@
   },
 
   "custom/spotify-play": {
-    "exec":     "playerctl -p spotify status | grep -q Playing && echo '󰏦' || echo '󰐍'",
+    "exec":     "playerctl -p spotify status | grep -q Playing && echo '󰏤' || echo '󰐊'",
     "interval": 2,
     "on-click": "playerctl -p spotify play-pause",
     "tooltip":  false
@@ -146,14 +146,20 @@
   },
 
   // ─── Right: Network ───────────────────────────────────────────────────────
-  "network": {
-    "format-wifi":             "󰤨",
-    "format-ethernet":         "󰈀",
-    "format-disconnected":     "󰤮",
-    "tooltip-format-wifi":     "{essid}  {signalStrength}%",
-    "tooltip-format-ethernet": "{ifname}  󰈀",
-    "on-click":                "kitty nmtui"
-  },
+"network": {
+  "format-wifi": "{icon}",
+  "format-ethernet": "󰈀",
+  "format-disconnected": "󰤮",
+  
+  "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+
+  "tooltip-format-wifi": "  {essid}\n󰤨  Strength: {signalStrength}%\n󰈀  {ipaddr}",
+  "tooltip-format-ethernet": "󰈀  {ifname}\n{ipaddr}",
+  "tooltip-format-disconnected": "󰤮  No connection",
+
+  "on-click": "kitty nmtui",
+  "interval": 3
+},
 
   // ─── Right: Battery ───────────────────────────────────────────────────────
   "battery": {
