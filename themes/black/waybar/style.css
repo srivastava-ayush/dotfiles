@@ -296,7 +296,7 @@ tooltip label {
 }
 
 #temperature {
-    color: @peach;
+       color: @blue;
 }
 
 #temperature.critical {

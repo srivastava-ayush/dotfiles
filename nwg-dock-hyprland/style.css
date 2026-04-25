@@ -1,42 +1,32 @@
+/* Dock container */
 window {
-  background: rgb(30, 35, 51);
-	border-radius: 10px;
-	border-style: none;
-	border-width: 1px;
-	border-color: rgba(156, 142, 122, 0.7)
+    background: rgba(30, 30, 46, 0.55);
+    /* backdrop-filter: blur(20px); */
+    border-radius: 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.124);
+    box-shadow:
+    
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
+/* Inner container */
 #box {
-  /* Define attributes of the box surrounding icons here */
-  padding: 1px
+    padding: 12px 1px;
 }
 
-#active {
-	/* This is to underline the button representing the currently active window */
-border-bottom: solid 3px;	
-	border-color: rgba(255, 255, 255, 0.3)
-}
-
-button, image {
-	background: none;
-	border-style: none;
-	box-shadow: none;	
-	color: #999
-}
-
+/* Dock items */
 button {
-	padding: 4px;
-	margin-left: 4px;
-	margin-right: 4px;
-	color: #eee;
-  font-size: 12px
+    padding: 8px;
+    margin: 0 6px;
+    color: #cdd6f4;
+    font-size: 14px;
+
+    border-radius: 12px;
+    background: transparent;
+
+    transition: all 0.2s ease;
 }
 
-button:hover {
-	background-color: rgba(255, 255, 255, 0.15);
-	border-radius: 2px;
-}
 
-button:focus {
-	box-shadow: none
-}
+

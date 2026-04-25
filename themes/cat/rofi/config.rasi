@@ -19,7 +19,7 @@ configuration {
     font:             "SF Pro Display 13";
 
     /* Catppuccin Frappé — Base layers */
-    bg0:              rgba(48, 52, 70, 0.73);
+    bg0:              rgba(48, 52, 70, 0.2);
     bg1:              rgba(65,69,89,0.70);
     bg2:              rgba(81,87,109,0.50);
     bg3:              rgba(98,104,128,0.35);
