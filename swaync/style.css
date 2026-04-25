@@ -1,7 +1,6 @@
 /* ──────────────
    COLOR SYSTEM
    ────────────── */
-@import "colors.css";
 :root {
   /* base */
   --bg-main: #303342c7;
@@ -49,297 +48,130 @@
   font-family: "SF Pro Text", "SF Pro Display", "Cantarell", sans-serif;
   font-size: 13px;
   letter-spacing: -0.2px;
-  transition: all 140ms ease;
   color: var(--text-main);
 }
+.widget-title > label {
+  font-size: 18px;
+  font-weight: 700;
 
-/* ──────────────
-   CONTROL CENTER
-   ────────────── */
+  letter-spacing: -0.3px;
 
+  color: rgba(222, 234, 251, 0.92);
+
+  /* subtle macOS softness */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+}
 .control-center {
-  background: var(--bg-main);
-  backdrop-filter: var(--glass-strong);
-  border: 1px solid var(--border-soft);
-  border-radius: 16px;
-  padding: var(--space-lg);
+  background: rgba(48, 52, 66, 0.55);
+  backdrop-filter: blur(48px) saturate(160%);
+
+  border-radius: 20px;
+  padding: 18px;
+
+  border: 1px solid rgba(255,255,255,0.08);
 
   box-shadow:
-    0 0 0.5px rgba(0,0,0,0.3),
-    0 8px 30px rgba(0,0,0,0.25);
-}
-
-/* ──────────────
-   CARDS
-   ────────────── */
-
-.widget-dnd,
+    0 20px 60px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}.widget-dnd,
 .widget-mpris,
 .widget-volume,
 .widget-backlight,
 .widget-buttons-grid {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-light);
-
-  border-radius: 16px;
-  margin: var(--space-sm) 0;
-  padding: var(--space-lg);
-
-  box-shadow:
-    inset 0 1px 0 var(--border-strong),
-    0 6px 18px rgba(0, 0, 0, 0.25);
-}
-
-/* ──────────────
-   TITLE
-   ────────────── */
-
-.widget-title {
-  padding: var(--space-lg) var(--space-lg) var(--space-sm);
-}
-
-.widget-title > label {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.widget-title > button {
-  background: rgba(255,255,255,0.08);
-  border-radius: 8px;
-  padding: 4px 12px;
-  font-size: 22px;
-}
-
-.widget-title > button:hover {
-  background: rgba(255,255,255,0.15);
-}
-
-/* ──────────────
-   DND SWITCH
-   ────────────── */
-
-.widget-dnd > switch {
-  background: rgba(255,255,255,0.08);
-  border-radius: 20px;
-  min-width: 46px;
-  min-height: 24px;
-}
-
-.widget-dnd > switch:checked {
-  background: var(--accent);
-}
-
-.widget-dnd slider {
-  background: var(--white);
-  border-radius: 50%;
-  margin: 2px;
-}
-
-/* ──────────────
-   MPRIS
-   ────────────── */
-
-.widget-mpris {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.widget-mpris-player {
-  position: relative;
-
-  background: linear-gradient(
-    135deg,
-    var(--surface0),
-    var(--surface1)
-  );
-
+  background: rgba(171, 178, 217, 0.10);
   backdrop-filter: blur(28px) saturate(140%);
-  border-radius: 16px;
 
-  padding: 10px;
+  border-radius: 18px;
+  padding: 16px;
+  margin: 8px 0;
 
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.05),
-    0 8px 20px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.06);
+
+ box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.1),   /* top light reflection */
+    inset 0 -1px 0 rgba(0,0,0,0.25),        /* bottom inner edge */
+    0 4px 12px rgba(0,0,0,0.30);            /* outer depth */
+
+  backdrop-filter: blur(20px) saturate(140%);
+}.widget-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+
+  padding: 18px;
 }
 
-.widget-mpris-player::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,0.07),
-    transparent 40%
-  );
-
-  pointer-events: none;
-}
-
-.widget-mpris-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-main);
-}
-
-.widget-mpris-subtitle {
+.widget-buttons-grid::before {
+  content: "Quick Controls";
   font-size: 11px;
-  color: var(--text-dim);
-}
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}.widget-buttons-grid button {
+  background: rgba(255,255,255,0.08);
+  border-radius: 14px;
 
-.widget-mpris button {
-  background: rgba(255,255,255,0.05);
-  border-radius: 999px;
-
-  min-width: 30px;
-  min-height: 30px;
+  min-height: 48px;
 
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-.widget-mpris button:nth-child(2) {
-  background: rgba(140,170,238,0.28);
-  min-width: 36px;
-  min-height: 36px;
-}
+  font-weight: 500;
 
-.widget-mpris button:hover {
-  background: rgba(255,255,255,0.12);
-  transform: translateY(-1px);
-}
+ box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.25),   /* top light reflection */
+    inset 0 -1px 0 rgba(0,0,0,0.25),        /* bottom inner edge */
+    0 4px 12px rgba(0,0,0,0.30);            /* outer depth */
 
-.widget-mpris button:active {
-  transform: scale(0.92);
-}
-
-/* ─────────────
-   PROGRESS BAR
-   ───────────── */
-
-scale trough {
-  background: rgba(255,255,255,0.08);
-  border-radius: 999px;
-  min-height: 4px;
-}
-
-scale highlight {
-  background: linear-gradient(90deg, var(--accent), var(--accent-alt));
-}
-
-scale slider {
-  background: var(--white);
-  border-radius: 50%;
-  min-width: 10px;
-  min-height: 10px;
-}
-
-/* ──────────────
-   SLIDERS
-   ────────────── */
-
-.widget-volume,
-.widget-backlight {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-}
-
-.widget-volume label,
-.widget-backlight label {
-  font-size: 16px;
-  opacity: 0.85;
-}
-
-/* ──────────────
-   BUTTON GRID
-   ────────────── */
-
-.widget-buttons-grid {
-  position: relative;
-
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: var(--space-sm);
-
-  padding: var(--space-xl) var(--space-md) var(--space-md);
-}
-
-.widget-buttons-grid::before {
-  content: "Connectivity";
-  position: absolute;
-  top: 8px;
-  left: var(--space-md);
-
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.8px;
-
-  color: var(--text-muted);
-}
-
-.widget-buttons-grid button {
-  background: rgba(255,255,255,0.06);
-  border-radius: 12px;
-
-  min-height: 32px;
-  width: 100%;
+  backdrop-filter: blur(20px) saturate(140%);
 }
 
 .widget-buttons-grid button:hover {
-  background: rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-2px);
+}
+
+.widget-buttons-grid button:active {
+  transform: scale(0.95);
+  background: rgba(255,255,255,0.20);
 }
 
 .widget-buttons-grid button.active {
   background: rgba(140,170,238,0.35);
-  color: var(--white);
+  color: white;
+}scale trough {
+  background: rgba(255,255,255,0.10);
+  border-radius: 999px;
+  min-height: 5px;
 }
 
-/* ──────────────
-   NOTIFICATIONS
-   ────────────── */
+scale highlight {
+  background: linear-gradient(90deg, #8caaee, #babbf1);
+}
 
-.notification {
-  background: var(--surface0);
-  backdrop-filter: var(--glass-light);
+scale slider {
+  background: white;
+  border-radius: 50%;
+
+  min-width: 12px;
+  min-height: 12px;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}.notification {
+  background: rgba(65, 69, 89, 0.75);
+  backdrop-filter: blur(20px);
 
   border-radius: 16px;
-  padding: var(--space-md);
-  margin-bottom: var(--space-sm);
+  padding: 12px;
+  margin-bottom: 10px;
+
+  border: 1px solid rgba(255,255,255,0.05);
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.35);
 }
 
 .notification:hover {
-  background: var(--bg-hover);
-}
-
-.app-name {
-  font-size: 10px;
-  text-transform: uppercase;
-  opacity: 0.5;
-}
-
-.summary {
-  font-weight: 600;
-}
-
-.body {
-  opacity: 0.75;
-}
-
-.time {
-  opacity: 0.5;
-}
-
-.close-button {
-  background: rgba(255,255,255,0.08);
-  border-radius: 50%;
-}
-
-.close-button:hover {
-  background: var(--danger);
-  color: var(--white);
+  background: rgba(81, 87, 109, 0.65);
 }

@@ -70,7 +70,7 @@
     "exec":           "~/.config/waybar/scripts/spotify.sh",
     "interval":       2,
     "tooltip":        true,
-    "on-click":       "playerctl -p spotify play-pause",
+    "on-click":         "~/.config/waybar/scripts/spotify-toggle.sh",
     "on-scroll-up":   "playerctl -p spotify volume 0.05+",
     "on-scroll-down": "playerctl -p spotify volume 0.05-"
   },
@@ -135,15 +135,23 @@
   },
 
   // ─── Right: Bluetooth ─────────────────────────────────────────────────────
-  "bluetooth": {
-    "format-on":               "󰂯",
-    "format-off":              "󰂲",
-    "format-disabled":         "󰂲",
-    "format-connected":        "󰂱",
-    "format-connected-battery": "󰂱",
-    "tooltip-format":          "{controller_alias}\n{num_connections} connected",
-    "on-click-right":          "blueman-manager"
-  },
+ "bluetooth": {
+  "format-on":                "󰂯",
+  "format-off":               "󰂲",
+  "format-disabled":          "󰂲",
+  "format-connected":         "󰂱",
+  "format-connected-battery": "󰂱",
+
+  "tooltip": true,
+
+  "tooltip-format": "{controller_alias}\nStatus: {status}",
+
+  "tooltip-format-connected": "{controller_alias}\nConnected: {num_connections}",
+
+  "tooltip-format-connected-battery": "{controller_alias}\nConnected: {num_connections}",
+
+  "on-click": "blueman-manager"
+},
 
   // ─── Right: Network ───────────────────────────────────────────────────────
 "network": {

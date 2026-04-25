@@ -2,52 +2,50 @@
   "$schema": "/etc/xdg/swaync/configSchema.json",
 
   "positionX": "left",
-  "positionY": "bottom",
-
-  "timeout": 5,
-  "timeout-low": 3,
+  "positionY": "top",
+  "timeout": 6,
+  "timeout-low": 4,
   "timeout-critical": 0,
 
-  "notification-window-width": 360,
-  "control-center-width": 360,
+  "notification-window-width": 380,
+  "control-center-width": 400,
 
-  "control-center-margin-top": 8,
-  "control-center-margin-left": 8,
-  "control-center-margin-bottom": 8,
+  "control-center-margin-top": 12,
+  "control-center-margin-right": 12,
+  "control-center-margin-bottom": 12,
 
   "fit-to-screen": true,
   "layer": "overlay",
   "control-center-layer": "overlay",
 
   "cssPriority": "user",
-  "ignore-gtk-theme": false,
+  "ignore-gtk-theme": true,
 
   "widgets": [
     "title",
+    "dnd",
     "mpris",
     "volume",
     "backlight",
     "buttons-grid",
-    "buttons-grid#power",
-    "dnd",
+    "buttons-grid#system",
     "notifications"
   ],
 
   "widget-config": {
     "title": {
-      "text": "Ayush • Arch",
-
-      "clear-all-button": false,
-      "button-text": "Clear"
+      "text": "Ayush's Arch",
+      "clear-all-button": true,
+      "button-text": "Clear All"
     },
 
     "dnd": {
-      "label": "Do Not Disturb"
+      "label": "Focus Mode"
     },
 
     "mpris": {
-      "image-size": 56,
-      "image-radius": 12
+      "image-size": 64,
+      "image-radius": 16
     },
 
     "volume": {
@@ -57,44 +55,68 @@
 
     "backlight": {
       "label": "󰃟",
-      "device": "amdgpu_bl1"
+      "device": "amdgpu_bl2"
     },
 
     "buttons-grid": {
       "columns": 2,
-
       "actions": [
-        { "label": "󰤨", "command": "nmtui", "tooltip": "WiFi" },
-        { "label": "󰂯", "command": "blueman-manager", "tooltip": "Bluetooth" },
-        { "label": "󰕾", "command": "pavucontrol", "tooltip": "Sound" },
-        { "label": "󰐻", "command": "hyprpicker -a", "tooltip": "Color Picker" },
-        { "label": "󰆍", "command": "code", "tooltip": "VS Code" },
-        { "label": "󰣇", "command": "thunar", "tooltip": "Files" },
-        { "label": "󰆍", "command": "kitty", "tooltip": "Terminal" },
         {
-          "label": "󰍡",
-          "command": "hyprshot -m region",
-          "tooltip": "Screenshot"
-        }
+          "label": "󰤨  Wi-Fi",
+          "command": "nmtui",
+          "tooltip": "Wireless Settings"
+        },
+        {
+          "label": "󰂯  Bluetooth",
+          "command": "blueman-manager",
+          "tooltip": "Bluetooth Devices"
+        },
+        {
+          "label": "󰕾  Sound",
+          "command": "pavucontrol",
+          "tooltip": "Audio Settings"
+        },
+        {
+          "label": "󰐻  Picker",
+          "command": "hyprpicker -a",
+          "tooltip": "Color Picker"
+        },
+        {
+  "label": "󰏲  Phone",
+  "command": "kdeconnect-app",
+  "tooltip": "Connect to phone"
+},
+        {
+  "label": "󰊴  Rog Center",
+  "command": "rog-control-center",
+  "tooltip": "rog-control-center"
+}
       ]
     },
 
-    "buttons-grid#power": {
+    "buttons-grid#system": {
       "columns": 4,
       "actions": [
-        { "label": "󰌾", "command": "hyprlock", "tooltip": "Lock" },
-        { "label": "󰒲", "command": "systemctl suspend", "tooltip": "Sleep" },   {
-          "label": "󰤄",
-          "command": "systemctl hibernate",
-          "tooltip": "Hibernate"
+        {
+          "label": "󰌾",
+          "command": "hyprlock",
+          "tooltip": "Lock Screen"
         },
-        { "label": "󰑐", "command": "systemctl reboot", "tooltip": "Restart" },
+        {
+          "label": "󰒲",
+          "command": "systemctl suspend",
+          "tooltip": "Sleep"
+        },
+        {
+          "label": "󰑐",
+          "command": "systemctl reboot",
+          "tooltip": "Restart"
+        },
         {
           "label": "󰐥",
           "command": "systemctl poweroff",
-          "tooltip": "Shutdown"
+          "tooltip": "Shut Down"
         }
-     
       ]
     }
   }
