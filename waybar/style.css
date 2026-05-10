@@ -1,43 +1,35 @@
 /* ─────────────────────────────────────────────
-   ZED BLACK · MINIMAL PALETTE
+   CATPPUCCIN FRAPPÉ · MACOS MINIMAL WAYBAR
 ───────────────────────────────────────────── */
 
 
-/* ───────── BASE ───────── */
+/* ───────── PALETTE ───────── */
 
-@define-color base      #0f0f10;
-@define-color mantle    #111113;
-@define-color crust     #09090b;
+@define-color base      #232634;
+@define-color mantle    #1e2030;
+@define-color crust     #181926;
 
+@define-color surface0  #303446;
+@define-color surface1  #414559;
+@define-color surface2  #51576d;
 
-/* ───────── SURFACES ───────── */
+@define-color text      #c6d0f5;
+@define-color subtext0  #a5adce;
+@define-color subtext1  #b5bfe2;
 
-@define-color surface0  #18181b;
-@define-color surface1  #232326;
-@define-color surface2  #2c2c30;
-
-
-/* ───────── TEXT ───────── */
-
-@define-color text      #e4e4e7;
-@define-color subtext0  #a1a1aa;
-@define-color subtext1  #c4c4cc;
-
-
-/* ───────── ACCENTS ───────── */
-
-@define-color accent    #d4d4d8;
-@define-color red       #f87171;
+@define-color lavender  #8caaee;
+@define-color red       #e78284;
 
 
 /* ───────── DESIGN TOKENS ───────── */
 
-@define-color glass-bg       alpha(#111113, 0.78);
+@define-color glass-bg       alpha(#1e2030, 0.6);
+@define-color glass-hover    alpha(#ffffff, 0.05);
 
-@define-color glass-hover    alpha(#ffffff, 0.04);
+@define-color border-soft    alpha(#ffffff, 0.08);
+@define-color border-strong  alpha(#ffffff, 0.12);
 
-@define-color border-soft    alpha(#ffffff, 0.06);
-@define-color border-strong  alpha(#ffffff, 0.10);
+
 /* ─────────────────────────────────────────────
    GLOBAL
 ───────────────────────────────────────────── */
@@ -175,8 +167,9 @@ window#waybar {
 ───────────────────────────────────────────── */
 
 #custom-spotify {
-    color: @text;
-
+    color: @lavender;
+    border: 1px solid alpha(@border-strong, 1);
+    background: alpha(@lavender, .12);
     font-weight: 600;
 }
 
@@ -236,7 +229,7 @@ window#waybar {
 #workspaces button.active {
     background: alpha(#9f9ffb, 0.16);
 
-    color: @accent;
+    color: @lavender;
 
     opacity: 1;
 }
@@ -246,13 +239,18 @@ window#waybar {
    PERFORMANCE
 ───────────────────────────────────────────── */
 
-#custom-powerprofile,
+
 #cpu,
 #memory,
 #temperature {
     color: @subtext1;
+
+;
 }
 
+#custom-powerprofile{
+    color: @lavender;
+}
 #temperature.critical {
     color: @red;
 
@@ -339,4 +337,16 @@ tooltip label {
 
 #network{
     margin-right: 3px;
+}
+
+#custom-notification{
+        border: 1px solid alpha(@border-strong, 0.5);
+        background: alpha(@lavender, .12);
+}
+
+
+#custom-powerprofile{
+        background:alpha(@lavender, .12);
+        padding-right: 8px;
+        border: 1px solid alpha(@border-strong, 1);
 }

@@ -34,7 +34,7 @@
   },
 
   "custom/notification": {
-    "format": "",
+    "format": "y",
 
     "tooltip": false,
 
@@ -88,7 +88,7 @@
   },
 
   "custom/expand-right": {
-    "format": "󰝚",
+    "format": "",
 
     "tooltip": false
   },
@@ -170,10 +170,10 @@
 
     "modules": [
       "custom/expand",
-      "custom/powerprofile",
+   
       "cpu",
       "memory",
-      "temperature"
+      "temperature" ,  "custom/powerprofile"
     ]
   },
 
@@ -192,20 +192,29 @@
 
     "on-click": "~/.config/scripts/power-cycle.sh"
   },
-
-  "cpu": {
-    "format": "󰍛  {usage}%"
+"cpu": {
+  "states": {
+    "warning": 55
   },
+  "format": "",
+  "format-warning": " {usage}%"
+},
 
-  "memory": {
-    "format": "󰘚  {percentage}%"
+"memory": {
+  "states": {
+    "warning": 80
   },
+  "format": "󰧑",
+  "format-warning": "󰧑 {percentage}%"
+},
 
-  "temperature": {
-    "critical-threshold": 90,
+"temperature": {
+  "critical-threshold": 85,
 
-    "format": "󰔏  {temperatureC}°C"
-  },
+  "format": "",
+
+  "format-critical": "󰸁 {temperatureC}°"
+},
 
   // ─────────────────────────────────────
   // CONNECTIVITY ISLAND

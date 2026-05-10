@@ -17,13 +17,13 @@
 @define-color subtext0  #a5adce;
 @define-color subtext1  #b5bfe2;
 
-@define-color lavender  #babbf1;
+@define-color lavender  #8caaee;
 @define-color red       #e78284;
 
 
 /* ───────── DESIGN TOKENS ───────── */
 
-@define-color glass-bg       alpha(#1e2030, 0.32);
+@define-color glass-bg       alpha(#1e2030, 0.6);
 @define-color glass-hover    alpha(#ffffff, 0.05);
 
 @define-color border-soft    alpha(#ffffff, 0.08);
@@ -167,8 +167,9 @@ window#waybar {
 ───────────────────────────────────────────── */
 
 #custom-spotify {
-    color: @text;
-
+    color: @lavender;
+    border: 1px solid alpha(@border-strong, 1);
+    background: alpha(@lavender, .12);
     font-weight: 600;
 }
 
@@ -238,13 +239,18 @@ window#waybar {
    PERFORMANCE
 ───────────────────────────────────────────── */
 
-#custom-powerprofile,
+
 #cpu,
 #memory,
 #temperature {
     color: @subtext1;
+
+;
 }
 
+#custom-powerprofile{
+    color: @lavender;
+}
 #temperature.critical {
     color: @red;
 
@@ -331,4 +337,16 @@ tooltip label {
 
 #network{
     margin-right: 3px;
+}
+
+#custom-notification{
+        border: 1px solid alpha(@border-strong, 0.5);
+        background: alpha(@lavender, .12);
+}
+
+
+#custom-powerprofile{
+        background:alpha(@lavender, .12);
+        padding-right: 8px;
+        border: 1px solid alpha(@border-strong, 1);
 }
