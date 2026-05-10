@@ -1,57 +1,83 @@
+
 {
   "layer": "top",
   "position": "top",
   "reload_style_on_change": true,
 
-  "modules-left":   ["custom/notification", "clock", "group/spotify"],
-  "modules-center": ["hyprland/workspaces"],
-  "modules-right":  ["group/expand", "custom/pacman", "bluetooth", "network", "battery"],
+  "modules-left": [
+    "group/date",
+    "group/spotify"
+  ],
 
-  // ─── Workspaces ───────────────────────────────────────────────────────────
-  "hyprland/workspaces": {
-    "format": "{icon}",
-    "format-icons": {
-      "active":  "󰮯",
-      "default": "󰊠",
-      "empty":   "󰧞"
-    },
-    "persistent-workspaces": {
-      "*": [1, 2, 3, 4, 5]
-    }
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+
+  "modules-right": [
+    "group/performance",
+    "group/connectivity"
+  ],
+
+  // ─────────────────────────────────────
+  // DATE ISLAND
+  // ─────────────────────────────────────
+
+  "group/date": {
+    "orientation": "horizontal",
+
+    "class": "group-date",
+
+    "modules": [
+      "custom/notification",
+      "clock"
+    ]
   },
 
-  // ─── Left: Notification ───────────────────────────────────────────────────
   "custom/notification": {
-    "format":   " ",
-    "tooltip":  false,
+    "format": "",
+
+    "tooltip": false,
+
     "on-click": "swaync-client -t -sw",
-    "escape":   true
+
+    "escape": true
   },
 
-  // ─── Left: Clock ──────────────────────────────────────────────────────────
   "clock": {
-    "format":          "󰃭  {:%a, %b %d  %I:%M %p}",
-    "interval":        1,
-    "tooltip-format":  "<tt>{calendar}</tt>",
+    "format": "󰃭  {:%a, %b %d  %I:%M %p}",
+
+    "interval": 1,
+
+    "tooltip-format": "<tt>{calendar}</tt>",
+
     "calendar": {
       "format": {
         "today": "<span color='#fAfBfC'><b>{}</b></span>"
       }
     },
+
     "actions": {
-      "on-click":       "shift_up",
+      "on-click": "shift_up",
+
       "on-click-right": "shift_down"
     }
   },
 
-  // ─── Left: Spotify group ──────────────────────────────────────────────────
+  // ─────────────────────────────────────
+  // SPOTIFY ISLAND
+  // ─────────────────────────────────────
+
   "group/spotify": {
     "orientation": "horizontal",
+
+    "class": "group-spotify",
+
     "drawer": {
-      "transition-duration": 300,
-      "transition-to-left":  false,
-      "click-to-reveal":     true
+      "transition-duration": 0,
+
+      "click-to-reveal": true
     },
+
     "modules": [
       "custom/expand-right",
       "custom/spotify-prev",
@@ -62,138 +88,111 @@
   },
 
   "custom/expand-right": {
-    "format":  "󰝚",
+    "format": "󰝚",
+
     "tooltip": false
   },
 
   "custom/spotify": {
-    "exec":           "~/.config/waybar/scripts/spotify.sh",
-    "interval":       2,
-    "tooltip":        true,
-    "on-click":         "~/.config/waybar/scripts/spotify-toggle.sh",
-    "on-scroll-up":   "playerctl -p spotify volume 0.05+",
+    "exec": "~/.config/waybar/scripts/spotify.sh",
+
+    "interval": 2,
+
+    "tooltip": true,
+
+    "on-click": "~/.config/waybar/scripts/spotify-toggle.sh",
+
+    "on-scroll-up": "playerctl -p spotify volume 0.05+",
+
     "on-scroll-down": "playerctl -p spotify volume 0.05-"
   },
 
   "custom/spotify-prev": {
-    "format":   "󰒮",
-    "tooltip":  false,
+    "format": "󰒮",
+
+    "tooltip": false,
+
     "on-click": "playerctl -p spotify previous"
   },
 
   "custom/spotify-play": {
-    "exec":     "playerctl -p spotify status | grep -q Playing && echo '󰏤' || echo '󰐊'",
+    "exec": "playerctl -p spotify status | grep -q Playing && echo '󰏤' || echo '󰐊'",
+
     "interval": 2,
+
     "on-click": "playerctl -p spotify play-pause",
-    "tooltip":  false
+
+    "tooltip": false
   },
 
   "custom/spotify-next": {
-    "format":   "󰒭",
-    "tooltip":  false,
+    "format": "󰒭",
+
+    "tooltip": false,
+
     "on-click": "playerctl -p spotify next"
   },
 
-  // ─── Right: Expand group (power + system) ────────────────────────────────
-  "group/expand": {
-    "orientation": "horizontal",
-    "drawer": {
-      "transition-duration":  300,
-      "transition-to-right":  true,
-      "click-to-reveal":      true
+  // ─────────────────────────────────────
+  // WORKSPACES ISLAND
+  // ─────────────────────────────────────
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+
+    "format-icons": {
+      "active": "󰮯",
+
+      "default": "󰊠",
+
+      "empty": "󰧞"
     },
+
+    "persistent-workspaces": {
+      "*": [1, 2, 3, 4, 5]
+    }
+  },
+
+  // ─────────────────────────────────────
+  // PERFORMANCE ISLAND
+  // ─────────────────────────────────────
+
+  "group/performance": {
+    "orientation": "horizontal",
+
+    "class": "group-performance",
+
+    "drawer": {
+      "transition-duration": 0,
+
+      "click-to-reveal": true
+    },
+
     "modules": [
       "custom/expand",
-      // "custom/power-lock",
-      // "custom/power-logout",
-      // "custom/power-reboot",
-      // "custom/power-shutdown",
       "custom/powerprofile",
       "cpu",
       "memory",
-      "temperature",
-      "custom/endpoint"
+      "temperature"
     ]
   },
 
   "custom/expand": {
-    "format":  "󰍜",
+    "format": "󰍜",
+
     "tooltip": false
   },
 
-  "custom/endpoint": {
-    "format":  "|",
-    "tooltip": false
+  "custom/powerprofile": {
+    "exec": "sh -c 'case $(powerprofilesctl get) in performance) echo 󰓅 ;; balanced) echo 󰾅 ;; power-saver) echo 󰾆 ;; esac'",
+
+    "interval": 5,
+
+    "format": "{}",
+
+    "on-click": "~/.config/scripts/power-cycle.sh"
   },
 
-  // ─── Right: Updates ───────────────────────────────────────────────────────
-  "custom/pacman": {
-    "format":   "󰏗  {}",
-    "interval": 1800,
-    "exec":     "checkupdates | wc -l",
-    "on-click": "kitty sh -c 'yay -Syu; echo Done — press enter to close; read'"
-  },
-
-  // ─── Right: Bluetooth ─────────────────────────────────────────────────────
- "bluetooth": {
-  "format-on":                "󰂯",
-  "format-off":               "󰂲",
-  "format-disabled":          "󰂲",
-  "format-connected":         "󰂱",
-  "format-connected-battery": "󰂱",
-
-  "tooltip": true,
-
-  "tooltip-format": "{controller_alias}\nStatus: {status}",
-
-  "tooltip-format-connected": "{controller_alias}\nConnected: {num_connections}",
-
-  "tooltip-format-connected-battery": "{controller_alias}\nConnected: {num_connections}",
-
-  "on-click": "blueman-manager"
-},
-
-  // ─── Right: Network ───────────────────────────────────────────────────────
-"network": {
-  "format-wifi": "{icon}",
-  "format-ethernet": "󰈀",
-  "format-disconnected": "󰤮",
-  
-  "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-
-  "tooltip-format-wifi": "  {essid}\n󰤨  Strength: {signalStrength}%\n󰈀  {ipaddr}",
-  "tooltip-format-ethernet": "󰈀  {ifname}\n{ipaddr}",
-  "tooltip-format-disconnected": "󰤮  No connection",
-
-  "on-click": "kitty nmtui",
-  "interval": 3
-},
-
-  // ─── Right: Battery ───────────────────────────────────────────────────────
-  "battery": {
-    "interval": 30,
-    "states": {
-      "good":     80,
-      "warning":  35,
-      "critical": 20
-    },
-    "format":          "{icon}  {capacity}%",
-    "format-alt":      "{icon}  {time}",
-    "format-charging": "{icon}  {capacity}%",
-    "format-full":     "󰁹  100%",
-    "format-icons": {
-      "default": [
-        "󰁺", "󰁻", "󰁼", "󰁽", "󰁾",
-        "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
-      ],
-      "charging": [
-        "󰢜", "󰂆", "󰂇", "󰂈", "󰢝",
-        "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"
-      ]
-    }
-  },
-
-  // ─── System stats ─────────────────────────────────────────────────────────
   "cpu": {
     "format": "󰍛  {usage}%"
   },
@@ -204,45 +203,131 @@
 
   "temperature": {
     "critical-threshold": 90,
-    "format":             "󰔏  {temperatureC}°C"
+
+    "format": "󰔏  {temperatureC}°C"
   },
 
-  // ─── Power profile ────────────────────────────────────────────────────────
-"custom/powerprofile": {
-  "exec": "sh -c 'case $(powerprofilesctl get) in performance) echo 󰓅 ;; balanced) echo 󰾅 ;; power-saver) echo 󰾆 ;; esac'",
-  "interval": 5,
-  "format": "{}",
-  "on-click": "~/.config/scripts/power-cycle.sh"
-},
+  // ─────────────────────────────────────
+  // CONNECTIVITY ISLAND
+  // ─────────────────────────────────────
 
-  // ─── Power controls ───────────────────────────────────────────────────────
-  "custom/power-lock": {
-    "format":   "󰌾",
-    "tooltip":  false,
-    "on-click": "hyprlock || swaylock || i3lock"
+  "group/connectivity": {
+    "orientation": "horizontal",
+
+    "class": "group-connectivity",
+
+    "modules": [
+      "custom/pacman",
+      "bluetooth",
+      "network",
+      "battery"
+    ]
   },
 
-  "custom/power-logout": {
-    "format":   "󰍃",
-    "tooltip":  false,
-    "on-click": "hyprctl dispatch exit || swaymsg exit || i3-msg exit"
+  "custom/pacman": {
+    "format": "󰏗  {}",
+
+    "interval": 1800,
+
+    "exec": "checkupdates | wc -l",
+
+    "on-click": "kitty sh -c 'yay -Syu; echo Done — press enter to close; read'"
   },
 
-  "custom/power-reboot": {
-    "format":   "󰑙",
-    "tooltip":  false,
-    "on-click": "systemctl reboot"
+  "bluetooth": {
+    "format-on": "󰂯",
+
+    "format-off": "󰂲",
+
+    "format-disabled": "󰂲",
+
+    "format-connected": "󰂱",
+
+    "format-connected-battery": "󰂱",
+
+    "tooltip": true,
+
+    "tooltip-format": "{controller_alias}\nStatus: {status}",
+
+    "tooltip-format-connected": "{controller_alias}\nConnected: {num_connections}",
+
+    "tooltip-format-connected-battery": "{controller_alias}\nConnected: {num_connections}",
+
+    "on-click": "blueman-manager"
   },
 
-  "custom/power-shutdown": {
-    "format":   "󰐥",
-    "tooltip":  false,
-    "on-click": "systemctl poweroff"
+  "network": {
+    "format-wifi": "{icon}",
+
+    "format-ethernet": "󰈀",
+
+    "format-disconnected": "󰤮",
+
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+
+    "tooltip-format-wifi": "  {essid}\n󰤨  Strength: {signalStrength}%\n󰈀  {ipaddr}",
+
+    "tooltip-format-ethernet": "󰈀  {ifname}\n{ipaddr}",
+
+    "tooltip-format-disconnected": "󰤮  No connection",
+
+    "on-click": "kitty nmtui",
+
+    "interval": 3
   },
 
-  // ─── Tray ─────────────────────────────────────────────────────────────────
-  "tray": {
-    "icon-size": 14,
-    "spacing":   10
+  "battery": {
+    "interval": 30,
+
+    "states": {
+      "good": 80,
+
+      "warning": 35,
+
+      "critical": 20
+    },
+
+    "format": "{icon}  {capacity}%",
+
+    "format-alt": "{icon}  {time}",
+
+    "format-charging": "{icon}  {capacity}%",
+
+    "format-full": "󰁹  100%",
+
+    "format-icons": {
+      "default": [
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂",
+        "󰁹"
+      ],
+
+      "charging": [
+        "󰢜",
+        "󰂆",
+        "󰂇",
+        "󰂈",
+        "󰢝",
+        "󰂉",
+        "󰢞",
+        "󰂊",
+        "󰂋",
+        "󰂅"
+      ]
+    }
   }
 }
+
