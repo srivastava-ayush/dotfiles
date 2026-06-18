@@ -359,3 +359,10 @@ tooltip label {
 }
 
 
+
+#custom-powerprofile{
+        background: alpha(@border-strong, .52);
+        padding-right: 8px;
+        border: 1px solid alpha(@border-strong, 1);
+             
+}

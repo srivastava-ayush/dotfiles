@@ -249,7 +249,7 @@ window#waybar {
 }
 
 #custom-powerprofile{
-    color: @lavender;
+    color: @text;
 }
 #temperature.critical {
     color: @red;
@@ -346,7 +346,8 @@ tooltip label {
 
 
 #custom-powerprofile{
-        background:alpha(@lavender, .12);
+        background: alpha(@border-strong, .52);
         padding-right: 8px;
         border: 1px solid alpha(@border-strong, 1);
+             
 }
